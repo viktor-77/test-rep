@@ -1,5 +1,4 @@
-<?php
-$str = 'ahb acb aeb aeeb adcb axeb';
-
-echo preg_replace('#a.b#', '!', $str);
-echo preg_replace('#a.b#', '!', $str);
+<?php // Определите, есть ли в строке 3 цифры подряд.
+$str = '4g23grgr';
+$res = preg_replace('#\d\d\d#','0',$str);
+echo $res;
