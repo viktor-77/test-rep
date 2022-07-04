@@ -65,7 +65,7 @@ function name_validation(string $name): bool
     return (bool)preg_match('#^[0-9a-zA-Z]{5,}$#', $name);
 }
 
-function is_email_free($link):bool
+function is_email_free($link): bool
 {
     $query = 'SELECT email FROM users';
     $result = mysqli_query($link, $query) or die(mysqli_error($link));
@@ -81,13 +81,21 @@ function is_email_free($link):bool
 }
 
 
+$validation_result = (email_validation($user_email)
+    and password_validation($user_password) and name_validation($user_name)
+    and is_email_free($link) and password_equal_check());
 
-$validation_result = (email_validation($user_email) and password_validation($user_password) and name_validation($user_name)
-and is_email_free($link) and password_equal_check());
-
-if($validation_result){
+if ($validation_result) {
+    $user_password = password_hash($user_password, PASSWORD_DEFAULT);
     $query = "INSERT INTO users SET email='$user_email', password='$user_password', name='$user_name'";
     mysqli_query($link, $query);
+
+} elseif (!is_email_free($link)) {
+    echo "!!!this email was registered!!!";
+}elseif (!password_equal_check()) {
+    echo "!!!passwords are not equal!!!";
+} else {
+    echo "!!!registration error!!!";
 }
 
 
