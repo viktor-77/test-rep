@@ -25,8 +25,11 @@ $pass = '';          // пароль
 $name = 'mydb';      // имя базы данных
 
 if (!empty($_POST)) {
+    session_start();
+
     $user_email = $_POST['email'];
     $user_password = $_POST['password'];
+    $user_name = null;
 
     $link = mysqli_connect($host, $user, $pass, $name);
     mysqli_query($link, "SET NAMES 'utf8'");
@@ -35,10 +38,12 @@ if (!empty($_POST)) {
     {
         return (bool)preg_match('#^[0-9a-z]{10,}@[0-9a-z]{1,10}\.[a-z]{2,4}$#', $email);
     }
+
     function password_validation(string $password): bool
     {
         return (bool)preg_match('#^(?=.*[\!\@\#\%\^\&\*])(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z\!\@\#\%\^\&\*]{8,}$#', $password);
     }
+
     function is_email_correct($link): bool
     {
         $query = 'SELECT email FROM users';
@@ -53,6 +58,7 @@ if (!empty($_POST)) {
         }
         return $flag;
     }
+
     function is_password_correct($link): bool
     {
         $query = 'SELECT password FROM users';
@@ -68,11 +74,20 @@ if (!empty($_POST)) {
         return $flag;
     }
 
+    function search_name($link,$user_email):string
+    {
+        $query = "SELECT name FROM users where email='".$user_email."'" ;
+        $result = mysqli_query($link, $query) or die(mysqli_error($link));
+        return mysqli_fetch_assoc($result)['name'];
+    }
+
     $validation_result = (email_validation($user_email) and password_validation($user_password)
         and is_email_correct($link) and is_password_correct($link));
 
     if ($validation_result) {
-        header('Location: user-page.php');
+        $_SESSION['auth'] = true;
+        $_SESSION['name'] = search_name($link,$user_email);
+        header("Location: user-page.php");
     } else {
         echo "!!!auth error!!!";
     }

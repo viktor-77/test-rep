@@ -1,2 +1,4 @@
 <?php
-echo 'hi auth was correct';
+session_start();
+$user_name = $_SESSION[name];
+echo "hi $user_name auth was correct";
