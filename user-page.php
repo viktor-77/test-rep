@@ -1,9 +1,12 @@
-<a href="user-page.php?show_name=<?php echo empty($_GET['show_name'])?>">show name</a>
+<a href="user-page.php?show_name=
+    <?= empty($_GET['show_name']) ?>">
+    show name
+</a><br>
 <?php
 session_start();
 if ($_GET['show_name']) {
-    echo $_SESSION['name'];
+    echo 'Your user name: <b>' . $_SESSION['name'] . "</b><br>";
 }
 
 $user_name = $_SESSION['name'];
-echo "hi  auth was correct" . "<br>";
+echo "Hi  <u>auth</u> was success!";
