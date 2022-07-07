@@ -9,7 +9,7 @@ $url = $_SERVER['REQUEST_URI'];
 $layout = file_get_contents('layout.php');
 
 $titles = require 'titles.php';
-if (!empty($titles[$url])){
+if (!empty($titles[$url])) {
     $title = $titles[$url];
     $layout = str_replace('{{title}}', $title, $layout);
 } else {

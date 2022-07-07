@@ -18,7 +18,7 @@ if (file_exists($path)) {
     $layout = str_replace('{{title}}', $title, $layout);
     echo $layout = str_replace('{{content}}', $content, $layout);
 } else {
-    $error_file =file_get_contents('view/404.php');
+    $error_file = file_get_contents('view/404.php');
     header('HTTP/1.0 404 Not Found');
     echo $error_file;
 }

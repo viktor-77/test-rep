@@ -1,4 +1,4 @@
-<!--Давайте теперь сделаем движок сайта, в котором контент страниц будет хранится не в файлах, а в базе данных-->
+<!--Переделайте ваш движок сайта на работу с ЧПУ. Потестируйте его работу.-->
 <meta charset="utf-8">
 <?php
 mb_internal_encoding('UTF-8');
@@ -15,10 +15,10 @@ $link = mysqli_connect($host, $user, $pass, $name);
 $layout = file_get_contents('layout.php');
 
 
-preg_match('#/page/(\d+)#', $url, $match);
-$id = $match[1];
+preg_match('#/page/([a-z0-9_-]+)#', $url, $match);
+$slug = $match[1];
 
-$query = "SELECT * FROM pages WHERE id=$id";
+$query = "SELECT * FROM pages WHERE slug='$slug'";
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
 $page = mysqli_fetch_assoc($result);
 if ($page) {
