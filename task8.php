@@ -21,6 +21,7 @@ $slug = $match[1];
 $query = "SELECT * FROM pages WHERE slug='$slug'";
 $result = mysqli_query($link, $query) or die(mysqli_error($link));
 $page = mysqli_fetch_assoc($result);
+
 if ($page) {
     $layout = str_replace('{{title}}', $page['title'], $layout);
     $layout = str_replace('{{content}}', $page['content'], $layout);

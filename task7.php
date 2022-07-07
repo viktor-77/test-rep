@@ -14,7 +14,6 @@ $name = 'mydb';      // имя базы данных
 $link = mysqli_connect($host, $user, $pass, $name);
 $layout = file_get_contents('layout.php');
 
-
 preg_match('#/page/(\d+)#', $url, $match);
 $id = $match[1];
 
