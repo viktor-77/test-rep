@@ -6,19 +6,21 @@ ini_set('display_errors', 'on');
 
 
 $url = $_SERVER['REQUEST_URI'];
-$path = 'view' . $url . '.php';
+$host = 'localhost'; // имя хоста
+$user = 'root';      // имя пользователя
+$pass = '';          // пароль
+$name = 'mydb';      // имя базы данных
+$link = mysqli_connect($host, $user, $pass, $name);
+
+preg_match('#/page/(\d+)#', $url, $match);
+$id = $match[1];
+
+$query  = "SELECT * FROM pages WHERE id=$id";
+$result = mysqli_query($link, $query) or die(mysqli_error($link));
+$page   = mysqli_fetch_assoc($result);
+
 $layout = file_get_contents('layout.php');
+$layout = str_replace('{{title}}', $page['title'], $layout);
+$layout = str_replace('{{content}}', $page['content'], $layout);
 
-if (file_exists($path)) {
-    $content = file_get_contents($path);
-    preg_match('#{{ title: "(.+?)" }}#', $content, $match);
-    $title = $match[1];
-    $content = preg_replace('#{{ title: "(.+?)" }}#', '', $content);
-    $layout = str_replace('{{title}}', $title, $layout);
-    echo $layout = str_replace('{{content}}', $content, $layout);
-} else {
-    $error_file =file_get_contents('view/404.php');
-    header('HTTP/1.0 404 Not Found');
-    echo $error_file;
-}
-
+echo $layout;
