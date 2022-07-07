@@ -1,3 +1,4 @@
+<!--Реализуйте в вашем движке отдачу страницы с 404 ошибкой.-->
 <meta charset="utf-8">
 <?php
 mb_internal_encoding('UTF-8');
