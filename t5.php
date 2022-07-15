@@ -1,9 +1,8 @@
-<meta charset="utf-8">
-<?php
-mb_internal_encoding('UTF-8');
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
+<!--Сделайте интерфейс iUser с методами getName, setName, getAge, setAge.-->
+<!--Сделайте интерфейс iEmployee, наследующий от интерфейса iUser и добавляющий в него методы getSalary и setSalary.-->
+<!--Сделайте класс Employee, реализующий интерфейс iEmployee.-->
 
+<?php
 
 interface IUser
 {
