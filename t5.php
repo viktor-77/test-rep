@@ -8,18 +8,18 @@ interface IUser
 {
     public function getName(): string;
 
-    public function setName(string $name);
+    public function setName(string $name): self;
 
     public function getAge(): int;
 
-    public function setAge(int $age);
+    public function setAge(int $age): self;
 }
 
 interface IEmployee extends IUser
 {
     public function getSalary(): int;
 
-    public function setSalary(int $salary);
+    public function setSalary(int $salary): self;
 }
 
 class Employee implements IEmployee
@@ -28,9 +28,10 @@ class Employee implements IEmployee
     private $age;
     private $salary;
 
-    public function setName(string $name)
+    public function setName(string $name): self
     {
         $this->name = $name;
+        return $this;
     }
 
     public function getName(): string
@@ -38,9 +39,11 @@ class Employee implements IEmployee
         return $this->name;
     }
 
-    public function setAge(int $age)
+    public function setAge(int $age): self
     {
         $this->age = $age;
+        return $this;
+
     }
 
     public function getAge(): int
@@ -48,9 +51,10 @@ class Employee implements IEmployee
         return $this->age;
     }
 
-    public function setSalary(int $salary)
+    public function setSalary(int $salary): self
     {
         $this->salary = $salary;
+        return $this;
     }
 
     public function getSalary(): int
