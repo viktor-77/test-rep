@@ -1,9 +1,5 @@
-<meta charset="utf-8">
+<!--Переделайте код этого класса так, чтобы вместо геттеров и сеттеров использовались магический методы __get и __set.-->
 <?php
-mb_internal_encoding('UTF-8');
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
-
 
 class User
 {
