@@ -1,3 +1,4 @@
+<!--Реализуйте описанный класс Interval. Проверьте его работу.-->
 <?php
 include 't1_Date.php';
 
@@ -33,9 +34,3 @@ class Interval
         return strtotime(date_format($date, 'j-n-Y'));
     }
 }
-
-//$date1 = new Date('19-5-2001');
-//$date2 = new Date('19-5-2003');
-//
-//$interval = new Interval($date1, $date2);
-//echo $interval->toYears();
