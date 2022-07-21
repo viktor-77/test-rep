@@ -8,10 +8,10 @@ class Date
 
     public function __construct($date = null)
     {
-        if (isset($date)) {
+        if (empty($date)) {
             $this->date = date_create('today');
         } else {
-            $this->date = date_create(date('j-n-Y'));
+            $this->date = date_create($date);
         }
     }
 
@@ -29,7 +29,7 @@ class Date
             'Вересень', 'Жовтень', 'Листопад',
             'Грудень'
         ];
-        if (empty($lang) or $lang === 'en') {
+        if (empty($lang) || $lang === 'en') {
             return date_format($this->date, 'F');
         }
         if ($lang === 'ua') {
@@ -53,7 +53,7 @@ class Date
             'Friday' => 'П\'ятниця',
             'Saturday' => 'Субота',
         ];
-        if (empty($lang) or $lang === 'en') {
+        if (empty($lang) || $lang === 'en') {
             return date_format($this->date, 'l');
         }
         if ($lang === 'ua') {
@@ -105,6 +105,6 @@ class Date
     }
 }
 
-$date = new t1Date('19-05-2001');
-echo $date;
+//$date = new Date('19-05-2001');
+//echo $date->getYear();
 
