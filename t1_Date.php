@@ -105,6 +105,4 @@ class Date
     }
 }
 
-//$date = new Date('19-05-2001');
-//echo $date->getYear();
 
