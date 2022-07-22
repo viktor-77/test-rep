@@ -1,8 +1,4 @@
-<meta charset="utf-8">
 <?php
-mb_internal_encoding('UTF-8');
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
 
 include 't10_finalClass.php';
 
@@ -38,5 +34,3 @@ class HtmlList extends Tag
 $list = new HtmlList('ul');
 $item = (new ListItem())->setText('item');
 echo $list->addItem($item)->addItem($item)->addItem($item)->show();
-
-
