@@ -1,7 +1,5 @@
-<!--Самостоятельно добавьте метод setAttr в созданный вами в предыдущем уроке класс Tag.-->
-<!--Реализуйте метод removeAttr, который будет удалять переданный параметром атрибут.
-Сделайте так, чтобы этот метод также мог принимать участие в цепочке.-->
-
+<!--Добавьте в ваш класс Tag описанный метод setAttrs. Проверьте его работу.-->
+<!--Самостоятельно внесите соответствующие правки в ваш класс Tag.(можливість додавання атрибутів без значення)-->
 <?php
 
 class Tag
@@ -33,6 +31,14 @@ class Tag
         return $this;
     }
 
+    public function setAttributes($attributesArray)
+    {
+        foreach ($attributesArray as $attribute => $value) {
+            $this->setAttribute($attribute, $value);
+        }
+        return $this;
+    }
+
     public function removeAttribute($attributeName)
     {
         if (isset($this->attributes[$attributeName])) {
@@ -46,7 +52,11 @@ class Tag
         $attributeStr = '';
         if (!empty($this->attributes)) {
             foreach ($this->attributes as $attr => $value) {
-                $attributeStr .= " $attr=\"$value\" ";
+                if ($value === true) {
+                    $attributeStr .= " $attr";
+                } else {
+                    $attributeStr .= " $attr=\"$value\" ";
+                }
             }
         }
         return $attributeStr;
@@ -54,4 +64,4 @@ class Tag
 }
 
 $tag = new Tag('input');
-echo $tag->setAttribute('id', 55)->setAttribute('class', 'test')->openTag();
+echo $tag->setAttributes(['id' => 55, 'type' => 'textarea'])->setAttribute('disabled', true)->openTag();
