@@ -35,17 +35,17 @@ class Input extends Tag
     }
 }
 
-$form = (new Form)->setAttributes(['action' => 'sum.php', 'method' => 'GET']);
-
-echo $form->openTag();
-
-echo (new Input)->setAttribute('name', 'num1');
-echo (new Input)->setAttribute('name', 'num2');
-echo (new Input)->setAttribute('name', 'num3');
-echo (new Input)->setAttribute('name', 'num4');
-echo (new Input)->setAttribute('name', 'num5');
-
-echo (new Input)->setAttribute('type', 'submit');
-echo $form->closeTag();
+//$form = (new Form)->setAttributes(['action' => 'sum.php', 'method' => 'GET']);
+//
+//echo $form->openTag();
+//
+//echo (new Input)->setAttribute('name', 'num1');
+//echo (new Input)->setAttribute('name', 'num2');
+//echo (new Input)->setAttribute('name', 'num3');
+//echo (new Input)->setAttribute('name', 'num4');
+//echo (new Input)->setAttribute('name', 'num5');
+//
+//echo (new Input)->setAttribute('type', 'submit');
+//echo $form->closeTag();
 
 

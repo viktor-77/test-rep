@@ -14,10 +14,10 @@ class Form extends Tag
     }
 }
 
-$form = new Form();
-$form->setAttributes([
-    'action' => 'index.php',
-    'method' => 'POST',
-]);
-echo $form->openTag();
-echo $form->closeTag();
+//$form = new Form();
+//$form->setAttributes([
+//    'action' => 'index.php',
+//    'method' => 'POST',
+//]);
+//echo $form->openTag();
+//echo $form->closeTag();

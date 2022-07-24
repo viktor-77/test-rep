@@ -43,10 +43,10 @@ class Submit extends Input
     }
 }
 
-$form = (new Form)->setAttributes(['action' => 'test.php', 'method' =>
-    'GET']);
-
-echo $form->openTag();
-echo (new Input)->setAttribute('name', 'year');
-echo new Submit;
-echo $form->closeTag();
+//$form = (new Form)->setAttributes(['action' => 'test.php', 'method' =>
+//    'GET']);
+//
+//echo $form->openTag();
+//echo (new Input)->setAttribute('name', 'year');
+//echo new Submit;
+//echo $form->closeTag();
