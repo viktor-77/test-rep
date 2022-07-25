@@ -11,11 +11,10 @@ class Password extends Input
     }
 }
 
-$form = (new Form)->setAttributes([
-    'action' => 'test.php',
-    'method' => 'GET'
-]);
-
+//$form = (new Form)->setAttributes([
+//    'action' => 'test.php',
+//    'method' => 'GET'
+//]);
 //echo $form->openTag();
 //echo (new Input)->setAttribute('name', 'login');
 //echo (new Password)->setAttribute('name', 'passw');

@@ -2,9 +2,7 @@
 
 <?php
 
-
 include 't10_finalClass.php';
-
 
 class Form extends Tag
 {

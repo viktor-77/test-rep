@@ -3,15 +3,8 @@
 Сделайте так, чтобы после отправки на экран выводилась сумма этих чисел, а введенные значения не пропадали из инпутов.-->
 
 <?php
-include 't10_finalClass.php';
 
-class Form extends Tag
-{
-    public function __construct()
-    {
-        parent::__construct('form');
-    }
-}
+include 't14_form.php';
 
 class Input extends Tag
 {

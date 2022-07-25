@@ -1,5 +1,3 @@
-
-
 <?php
 
 include 't16_Submit.php';
@@ -12,6 +10,7 @@ class Hidden extends Input
         parent::__construct();
     }
 }
+
 //$form = (new Form)->setAttributes([
 //    'action' => 'test.php',
 //    'method' => 'GET'

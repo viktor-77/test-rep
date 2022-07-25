@@ -2,15 +2,7 @@
 
 <?php
 
-include 't10_finalClass.php';
-
-class Form extends Tag
-{
-    public function __construct()
-    {
-        parent::__construct('form');
-    }
-}
+include 't14_form.php';
 
 class Input extends Tag
 {
