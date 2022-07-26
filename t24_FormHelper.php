@@ -99,34 +99,44 @@ class FormHelper extends TagHelper
     public function select($selectAttributes, $optionAttributes)
     {
         $options = '';
+        if (isset($_REQUEST[$selectAttributes['name']])) {
+            $value = $_REQUEST[$selectAttributes['name']];
+            $selectAttributes['value'] = $value;
+        }
 
         foreach ($optionAttributes as $optionAttribute) {
-            $options .= $this->show('option', $optionAttribute['text'],$optionAttribute['attrs']);
+            if ($optionAttribute['attrs']['value'] === $selectAttributes['value']) {
+                $optionAttribute['attrs']['selected'] = true;
+            } else {
+                unset($optionAttribute['attrs']['selected'] );
+            }
+            $options .= $this->show('option', $optionAttribute['text'], $optionAttribute['attrs']);
         }
 
         return $this->open('select', $selectAttributes) . $options . $this->close('select');
     }
 }
 
-echo (new FormHelper)->openForm();
+$formHelper = new FormHelper();
+echo $formHelper->openForm();
 
-echo (new FormHelper)->textarea(['name' => 'textarea', 'style' => "height:50px"]) . '<br><br>';
-echo (new FormHelper)->input(['name' => 'input']) . '<br><br>';
-echo (new FormHelper)->checkbox(['name' => 'checkbox']) . '<br><br>';
-echo (new FormHelper)->radio(['name' => 'radio', 'value' => 'val1']);
-echo (new FormHelper)->radio(['name' => 'radio', 'value' => 'val2']) . '<br><br>';
+echo $formHelper->textarea(['name' => 'textarea', 'style' => "height:50px"]) . '<br><br>';
+echo $formHelper->input(['name' => 'input']) . '<br><br>';
+echo $formHelper->checkbox(['name' => 'checkbox']) . '<br><br>';
+echo $formHelper->radio(['name' => 'radio', 'value' => 'val1']);
+echo $formHelper->radio(['name' => 'radio', 'value' => 'val2']) . '<br><br>';
 
-echo (new FormHelper)->select(
+echo $formHelper->select(
     ['name' => 'list', 'class' => 'eee'],
     [
         ['text' => 'item1', 'attrs' => ['value' => '1']],
-        ['text' => 'item2', 'attrs' => ['value' => '1', 'selected'
+        ['text' => 'item2', 'attrs' => ['value' => '2', 'selected'
         => true]],
-        ['text' => 'item1', 'attrs' => ['value' => '1', 'class'
+        ['text' => 'item3', 'attrs' => ['value' => '3', 'class'
         => 'last']],
     ],
 
 );
 
-echo (new FormHelper)->submit();
-echo (new FormHelper)->closeForm();
+echo $formHelper->submit();
+echo $formHelper->closeForm();
