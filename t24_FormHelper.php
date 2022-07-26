@@ -108,7 +108,7 @@ class FormHelper extends TagHelper
             if ($optionAttribute['attrs']['value'] === $selectAttributes['value']) {
                 $optionAttribute['attrs']['selected'] = true;
             } else {
-                unset($optionAttribute['attrs']['selected'] );
+                unset($optionAttribute['attrs']['selected']);
             }
             $options .= $this->show('option', $optionAttribute['text'], $optionAttribute['attrs']);
         }
