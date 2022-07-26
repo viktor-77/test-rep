@@ -33,7 +33,7 @@ class FormHelper extends TagHelper
     public function hidden($attributes = []): string
     {
         $attributes['type'] = 'hidden';
-        return $this->input($attributes);
+        return $this->open('input', $attributes);
     }
 
     public function password($attributes = []): string
@@ -45,7 +45,7 @@ class FormHelper extends TagHelper
     public function submit($attributes = []): string
     {
         $attributes['type'] = 'submit';
-        return $this->input($attributes);
+        return $this->open('input', $attributes);
     }
 
     public function textarea($attributes = []): string
@@ -57,15 +57,26 @@ class FormHelper extends TagHelper
     public function checkbox($attributes = []): string
     {
         $attributes['type'] = 'checkbox';
-        return $this->input($attributes);
+        $attributes['value'] = 1;
+
+        if (isset($attributes['name'])) {
+            $name = $attributes['name'];
+            if (isset($_REQUEST[$name]) && $_REQUEST[$name] == 1) {
+                $attributes['checked'] = true;
+            }
+        }
+        $hidden = $this->hidden(['name' => $name, 'value' => '0']);
+
+        return $hidden . $this->open('input', $attributes);
     }
 
 }
+
 echo (new FormHelper)->openForm();
 
-echo (new FormHelper)->input(['name'=>'input']);
-echo (new FormHelper)->textarea(['name'=>'textarea']);
-echo (new FormHelper)->checkbox(['name'=>'checkbox']);
+echo (new FormHelper)->input(['name' => 'input']);
+echo (new FormHelper)->textarea(['name' => 'textarea']);
+echo (new FormHelper)->checkbox(['name' => 'checkbox']);
 
 echo (new FormHelper)->submit();
 echo (new FormHelper)->closeForm();
