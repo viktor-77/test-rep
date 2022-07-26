@@ -38,7 +38,7 @@ class TagHelper
 }
 
 
-$th = new TagHelper();
+//$th = new TagHelper();
 
 //echo $th->open('form', ['action' => 'test.php', 'method' =>
 //    'GET']);
@@ -46,4 +46,4 @@ $th = new TagHelper();
 //echo $th->open('input', ['type' => 'submit']);
 //echo $th->close('form');
 
-echo $th->show('b', 'hello');
+//echo $th->show('b', 'hello');
