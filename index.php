@@ -70,21 +70,25 @@ class FormHelper extends TagHelper
         return $hidden . $this->open('input', $attributes);
     }
 
-
     public function radio($attributes = []): string
     {
         $attributes['type'] = 'radio';
 
-        if (isset($attributes['name']) && isset($attributes['value'])) {
-            $name = $attributes['name'];
-            if (isset($_REQUEST[$name])) {
-                $value = $_REQUEST[$name];
-                if ($attributes['value'] === $value) {
-                    $attributes['checked'] = true;
-                }
+//        if (isset($attributes['name'], $attributes['value'])) {
+//            $name = $attributes['name'];
+//            if (isset($_REQUEST[$name])) {
+//                $value = $_REQUEST[$name];
+//                if ($attributes['value'] === $value) {
+//                    $attributes['checked'] = true;
+//                }
+//            }
+//        }
+
+        if (isset($attributes['name'], $_REQUEST[$attributes['name']])) {
+            if ($attributes['value'] === $_REQUEST[$attributes['name']]) {
+                $attributes['checked'] = true;
             }
         }
-
         return $this->open('input', $attributes);
     }
 }
@@ -96,7 +100,6 @@ echo (new FormHelper)->input(['name' => 'input']) . '<br><br>';
 echo (new FormHelper)->checkbox(['name' => 'checkbox']) . '<br><br>';
 echo (new FormHelper)->radio(['name' => 'radio', 'value' => 'val1']);
 echo (new FormHelper)->radio(['name' => 'radio', 'value' => 'val2']) . '<br><br>';
-
 
 echo (new FormHelper)->submit();
 echo (new FormHelper)->closeForm();
