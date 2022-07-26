@@ -4,21 +4,12 @@
 
 include 't16_Submit.php';
 
-class Hidden extends Input
-{
-    public function __construct()
-    {
-        $this->setAttribute('type', 'hidden');
-        parent::__construct();
-    }
-}
-
-class Radio extends Input
+class Radio extends Tag
 {
     public function __construct()
     {
         $this->setAttribute('type', 'radio');
-        parent::__construct();
+        parent::__construct('input');
     }
 
     public function openTag()
@@ -32,14 +23,19 @@ class Radio extends Input
         }
         return parent::openTag();
     }
+
+    public function __toString()
+    {
+        return $this->openTag();
+    }
 }
 
-//$form = (new Form)->setAttributes([
-//    'action' => '',
-//    'method' => 'GET'
-//]);
-//echo $form->openTag();
-//echo (new Radio())->setAttribute('name', 'radio')->setAttribute('value', '1');
-//echo (new Radio())->setAttribute('name', 'radio')->setAttribute('value', '2');
-//echo new Submit;
-//echo $form->closeTag();
+$form = (new Form)->setAttributes([
+    'action' => '',
+    'method' => 'GET'
+]);
+echo $form->openTag();
+echo (new Radio())->setAttribute('name', 'radio')->setAttribute('value', '1');
+echo (new Radio())->setAttribute('name', 'radio')->setAttribute('value', '2');
+echo new Submit;
+echo $form->closeTag();

@@ -2,12 +2,12 @@
 
 include 't16_Submit.php';
 
-class Hidden extends Input
+class Hidden extends Tag
 {
     public function __construct()
     {
         $this->setAttribute('type', 'hidden');
-        parent::__construct();
+        parent::__construct('input');
     }
 }
 

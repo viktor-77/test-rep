@@ -4,12 +4,12 @@
 
 include 't16_Submit.php';
 
-class Hidden extends Input
+class Hidden extends Tag
 {
     public function __construct()
     {
         $this->setAttribute('type', 'hidden');
-        parent::__construct();
+        parent::__construct('input');
     }
 }
 
@@ -26,13 +26,12 @@ class Checkbox extends Tag
     {
         $name = $this->getAttribute('name');
         if ($name) {
-            $hidden = (new Hidden())->setAttribute('name', $name)->setAttribute('value', '0');
-
             if (!empty($_REQUEST[$name])) {
                 $this->setAttribute('checked');
             } else {
                 $this->removeAttribute('checked');
             }
+            $hidden = (new Hidden())->setAttribute('name', $name)->setAttribute('value', '0');
             return $hidden->openTag() . parent::openTag();
         } else {
             return parent::openTag();
@@ -46,12 +45,11 @@ class Checkbox extends Tag
 
 }
 
-//$form = (new Form)->setAttributes([
-//    'action' => '',
-//    'method' => 'GET'
-//]);
-//echo $form->openTag();
-//echo (new Checkbox)->setAttribute('name', 'checkbox');
-//echo (new Input)->setAttribute('name', 'user');
-//echo new Submit;
-//echo $form->closeTag();
+$form = (new Form)->setAttributes([
+    'action' => 'index.php',
+    'method' => 'GET'
+]);
+echo $form->openTag();
+echo (new Checkbox)->setAttribute('name', 'checkbox');
+echo new Submit;
+echo $form->closeTag();
