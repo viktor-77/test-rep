@@ -92,7 +92,16 @@ class FormHelper extends TagHelper
         return $this->open('input', $attributes);
     }
 
-//    public function sels
+    public function select($selectAttributes, $optionAttributes)
+    {
+        $options = '';
+
+        foreach ($optionAttributes as $optionAttribute) {
+            $options .= $this->show('option', $optionAttribute['text'],$optionAttribute['attrs']);
+        }
+
+        return $this->open('select', $selectAttributes) . $options . $this->close('select');
+    }
 }
 
 echo (new FormHelper)->openForm();
@@ -102,6 +111,18 @@ echo (new FormHelper)->input(['name' => 'input']) . '<br><br>';
 echo (new FormHelper)->checkbox(['name' => 'checkbox']) . '<br><br>';
 echo (new FormHelper)->radio(['name' => 'radio', 'value' => 'val1']);
 echo (new FormHelper)->radio(['name' => 'radio', 'value' => 'val2']) . '<br><br>';
+
+echo (new FormHelper)->select(
+    ['name' => 'list', 'class' => 'eee'],
+    [
+        ['text' => 'item1', 'attrs' => ['value' => '1']],
+        ['text' => 'item2', 'attrs' => ['value' => '1', 'selected'
+        => true]],
+        ['text' => 'item1', 'attrs' => ['value' => '1', 'class'
+        => 'last']],
+    ],
+
+);
 
 echo (new FormHelper)->submit();
 echo (new FormHelper)->closeForm();

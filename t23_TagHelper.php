@@ -16,9 +16,9 @@ class TagHelper
         return "</$tagName>";
     }
 
-    public function show(string $tagName, string $text): string
+    public function show(string $tagName, string $text, $attributes=[]): string
     {
-        return $this->open($tagName) . $text . $this->close($tagName);
+        return $this->open($tagName,$attributes) . $text . $this->close($tagName);
     }
 
     private function getAttributeStr(array $attributes): string
