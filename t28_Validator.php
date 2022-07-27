@@ -11,7 +11,10 @@ class Validator
 
     public function isDomain($str)
     {
-        // проверяет строку на то, что она корректное имя домена
+        return (preg_match("/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*$/i", $str)
+            && preg_match("/^.{1,253}$/", $str)
+            && preg_match("/^[^\.]{1,63}(\.[^\.]{1,63})*$/", $str));
+
     }
 
     public function inRange($num, $from, $to)
