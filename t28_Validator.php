@@ -1,8 +1,6 @@
-<meta charset="utf-8">
+<!--Реализуйте описанный класс Validator. Проверьте его работу.-->
+
 <?php
-mb_internal_encoding('UTF-8');
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
 
 class Validator
 {
@@ -26,4 +24,3 @@ class Validator
         return $from <= mb_strlen($str) && mb_strlen($str) <= $to;
     }
 }
-
